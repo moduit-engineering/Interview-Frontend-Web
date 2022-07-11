@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "antd": "^4.21.6",
+    "axios": "^0.27.2",
+    "lodash": "^4.17.21",
     "next": "12.2.2",
     "react": "18.2.0",
+    "react-data-table-component": "^7.5.2",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.5"
   },
@@ -19,6 +22,7 @@
     "@types/node": "18.0.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "@types/styled-components": "^5.1.25",
     "autoprefixer": "^10.4.7",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.2",

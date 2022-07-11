@@ -27,6 +27,7 @@ const SidebarComponent = () => {
         className="sidebar"
       >
         <Menu.Item 
+          key="question-1"
           icon={<Image
             src="/icon/Q1.svg"
             alt="Question 1"
@@ -39,6 +40,7 @@ const SidebarComponent = () => {
           </Link>
         </Menu.Item>
         <Menu.Item 
+          key="question-2"
           icon={
           <Image
             src="/icon/Q2.svg"
