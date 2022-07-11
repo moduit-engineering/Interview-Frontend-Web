@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 height={34}
                 className="bg-white"
               />
-              <MenuOutlined className="blue-4" onClick={showDrawer} />
+              <MenuOutlined className="blue-4" onClick={showDrawer} style={{fontSize: "32px"}}/>
             </div>
             <Drawer placement="right" onClose={onClose} visible={visible}>
               <SidebarComponent />
