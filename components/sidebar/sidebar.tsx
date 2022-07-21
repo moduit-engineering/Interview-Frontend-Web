@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import sidebarNavigation from "./sidebarNavigation";
+import { useRouter } from "next/router";
 
 export default function Sidebar() {
-  const [activeMenu, setActiveMenu] = useState("question-1");
+  const router = useRouter();
+  const [activeMenu, setActiveMenu] = useState("/");
 
-  const handleMenu = (menu: any) => {
-    setActiveMenu(menu.id);
+  useEffect(() => {
+    setActiveMenu(router.pathname);
+  }, [router.pathname]);
+
+  const handleRouting = (route: string) => {
+    router.push(route);
   };
 
   return (
@@ -23,11 +29,11 @@ export default function Sidebar() {
           {sidebarNavigation &&
             sidebarNavigation.map((item, idx) => (
               <div
-                onClick={() => handleMenu(item)}
+                onClick={() => handleRouting(item.url)}
                 key={idx}
                 className={
                   "cursor-pointer h-8 flex items-center my-2 " +
-                  (activeMenu == item.id && " border-[#034EA1] border-r-4")
+                  (activeMenu == item.url && " border-[#034EA1] border-r-4")
                 }
               >
                 <Image
@@ -39,7 +45,7 @@ export default function Sidebar() {
                 <span
                   className={
                     "text-sm font-semibold pl-4 " +
-                    (activeMenu == item.id
+                    (activeMenu == item.url
                       ? " text=[#424242]"
                       : " text-[#888888]")
                   }

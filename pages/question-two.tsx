@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/Layout";
 import Table from "../components/table";
+import * as ImIcons from "react-icons/im";
 
 const columns = [
   {
@@ -338,11 +339,41 @@ interface Row {
   footer: string;
 }
 
-export default function Home() {
+export default function QuestionTwo() {
+  const [search, setSearch] = useState("");
   const [rows, setRows] = useState<Row[]>([]);
+  const [initData, setInitData] = useState<Row[]>([]);
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    let keyword = search;
+    let data = initData;
+    findString(keyword, data);
+  };
+
+  const handleChange = (e: any) => {
+    let target = e.target.value;
+    setSearch(target);
+  };
+
+  const findString = (key: string, data: Array<any>) => {
+    let newArray: any[] = [];
+    let keyword = key.toLowerCase();
+    if (keyword === "") {
+      newArray = data;
+    } else {
+      data.map((item) => {
+        if (item.title.toString().toLowerCase().includes(keyword)) {
+          newArray.push(item);
+        }
+      });
+    }
+    setRows(newArray);
+  };
 
   useEffect(() => {
     setRows(rowsDummy);
+    setInitData(rowsDummy);
   }, []);
 
   return (
@@ -353,8 +384,27 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <div className="mx-4 p-4 h-[74px] flex items-center justify-between">
-          <span className="text-lg font-bold">Question 1</span>
+        <div className="mx-4 p-4 flex items-center justify-between">
+          <span className="text-lg font-bold flex-none">Question 2</span>
+          <div>
+            <div className="flex-1">
+              <form autoComplete="off" onSubmit={handleSearch}>
+                <div className="flex bg-white text-[#888888] border rounded-full py-2 px-4 justify-between">
+                  <input
+                    className="w-80 focus:outline-none"
+                    style={{ color: "black" }}
+                    onChange={handleChange}
+                    placeholder="search by product name"
+                    name="search"
+                    value={search}
+                  />
+                  <button type="submit">
+                    <ImIcons.ImSearch />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
         <Table data={{ rows, columns }} />
       </div>
