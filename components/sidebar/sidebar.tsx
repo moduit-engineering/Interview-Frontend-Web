@@ -6,12 +6,11 @@ export default function Sidebar() {
   const [activeMenu, setActiveMenu] = useState("question-1");
 
   const handleMenu = (menu: any) => {
-    console.log("heyy");
     setActiveMenu(menu.id);
   };
 
   return (
-    <div className="bg-white rounded-r-2xl shadow-xl h-screen">
+    <div className="bg-white rounded-r-2xl drop-shadow-2xl h-screen w-[240px]">
       <div className="py-4 pl-8 ml-4 pr-0 mr-0">
         <Image
           src="/assets/logo/logo.svg"
@@ -27,7 +26,7 @@ export default function Sidebar() {
                 onClick={() => handleMenu(item)}
                 key={idx}
                 className={
-                  "cursor-pointer h-12 flex items-center my-2 " +
+                  "cursor-pointer h-8 flex items-center my-2 " +
                   (activeMenu == item.id && " border-[#034EA1] border-r-4")
                 }
               >
