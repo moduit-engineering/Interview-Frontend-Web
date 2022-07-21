@@ -3,6 +3,7 @@ import Head from "next/head";
 import Layout from "../components/layout/Layout";
 import Table from "../components/table";
 import * as ImIcons from "react-icons/im";
+import QuestionsServices from "../services/questionsServices";
 
 const columns = [
   {
@@ -372,8 +373,15 @@ export default function QuestionTwo() {
   };
 
   useEffect(() => {
-    setRows(rowsDummy);
-    setInitData(rowsDummy);
+    QuestionsServices.questionTwo()
+      .then((res: any) => {
+        setRows(res.data);
+
+        setInitData(res.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
   }, []);
 
   return (
